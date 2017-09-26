@@ -9,7 +9,7 @@ using DataStructures;
             end
         end;
         sizeY, sizeX = size(data);
-        println(" $sizeY $sizeX");
+        #println(" $sizeY $sizeX");
         if(data[h, w] == false)
             return;
         else
@@ -61,5 +61,21 @@ using DataStructures;
                 i+=1;
             end;
         end;
+    end;
+
+    function processImage(data)
+        sizeY, sizeX = size(data);
+
+        # whole upped and loweredge
+        for i = 1:sizeX - 1
+            processEdgePixel(data, 1, i);
+            processEdgePixel(data, sizeY, i + 1);
+        end
+        # remaining sides
+        for i = 1:sizeY - 1
+            processEdgePixel(data, i + 1, 1);
+            processEdgePixel(data, i, sizeX);
+        end;
+
     end;
 end;
